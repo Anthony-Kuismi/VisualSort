@@ -81,8 +81,8 @@ GUI::GUI() {
 	// io.Fonts->AddFontDefault();
 
 	// Loading the Jetbrains font
-	io.Fonts->AddFontFromFileTTF("JetBrainsMono-Regular.ttf", 24);
-	HistoFont = io.Fonts->AddFontFromFileTTF("JetBrainsMono-Regular.ttf", 240);
+	io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 24);
+	HistoFont = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\Arial.ttf", 240);
 }
 
 GUI::~GUI() {
