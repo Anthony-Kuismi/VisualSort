@@ -3,11 +3,13 @@
 
 #include "GUI.h"
 
+ImFont* HistoFont;
+
 static void glfw_error_callback(int error, const char* description) {
 	fprintf(stderr, "Glfw Error %d: %s\n", error, description);
 }
 
-GUI::GUI() : m_clear_color(0.45f, 0.55f, 0.60f, 1.00f) {
+GUI::GUI() {
 	// Setup window
 	glfwSetErrorCallback(glfw_error_callback);
 	if (!glfwInit()) {
@@ -80,6 +82,7 @@ GUI::GUI() : m_clear_color(0.45f, 0.55f, 0.60f, 1.00f) {
 
 	// Loading the Jetbrains font
 	io.Fonts->AddFontFromFileTTF("JetBrainsMono-Regular.ttf", 24);
+	HistoFont = io.Fonts->AddFontFromFileTTF("JetBrainsMono-Regular.ttf", 240);
 }
 
 GUI::~GUI() {
@@ -129,6 +132,17 @@ void GUI::fortniteComponent() {
 	ImGui::Text("HELLO WORLD!");
 	char input[128] = "Enter Text";
 	ImGui::InputText("Name", input, IM_ARRAYSIZE(input));
+
+	float ItemWidth = 30;
+	ImVec2 CursorPos = ImGui::GetCursorPos();
+	ImVec2 GraphPos = { CursorPos.x, CursorPos.y + 300 };
+	float values[] = { 1, 2, 3, 4, 100 };
+	for (size_t i = 0; i < sizeof(values) / sizeof(values[0]); i++) {
+		float ItemHeight = values[i] * 3;
+		ImGui::GetBackgroundDrawList()->AddRectFilled(GraphPos, { GraphPos.x + ItemWidth, GraphPos.y - ItemHeight }, ImColor(255, 255, 255));
+		GraphPos = { GraphPos.x + ItemWidth + 1, GraphPos.y };
+	}
+
 	ImGui::End();
 }
 
